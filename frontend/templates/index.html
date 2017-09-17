@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web List</title>
+    <link rel="icon" href="/static/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="am-g">
+        <h1>Web List</h1>
+        <p>Store And Share<br/>存储与分享</p>
+    </div>
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <form method="get" class="am-form" action="/search">
+            <!--<form method="get" class="am-form" v-on:submit.prevent="search">-->
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                {% for engine in engines %}
+                    <label class="am-checkbox-inline">
+                        <input type="checkbox" name="engine" value="{{ engine.name_en }}">{{ engine.name_zh_cn }}
+                    </label>
+                {% endfor %}
+            </ul>
+            <input type="text" id="keyword" v-model="keyword" name="keyword">
+            <br>
+        </form>
+    </div>
+</div>
+</body>
+</html>
