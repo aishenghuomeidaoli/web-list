@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web List</title>
+    <link rel="icon" href="/static/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+    <style>
+        .header {
+            padding-top: 10px;
+        }
+
+        .header h1 {
+            color: #333;
+        }
+
+        .header p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 28px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="header am-g">
+        <div class="am-u-lg-1">
+            <a href="/"><p>Web List</p></a>
+        </div>
+        <div class="am-u-lg-5 am-u-md-8" id="engines">
+            <form method="get" class="am-form" action="/search">
+                <ul class="am-nav am-nav-pills am-topbar-nav">
+                    {% for engine in engines %}
+                        <label class="am-checkbox-inline">
+                            <input type="checkbox" name="engine" value="{{ engine.name_en }}"
+                                    {% if engine.name_en in selects %}
+                                   checked
+                                    {% endif %}
+                            >{{ engine.name_zh_cn }}
+                        </label>
+                    {% endfor %}
+                </ul>
+                <input type="text" id="keyword" value="{{ keyword }}" name="keyword">
+                <br>
+            </form>
+        </div>
+        <div class="am-u-lg-6">
+        </div>
+    </div>
+    <div class="am-g">
+        {% for link in links %}
+            <div class="am-u-lg-{{ width }} am-u-sm-12">
+                <iframe src="{{ link }}" class="iframe" width="100%"></iframe>
+                {#                <iframe src="https://www.baidu.com/s?wd=hello" height="500px" width="100%"></iframe>#}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<script type="application/javascript">
+    var x = document.getElementsByClassName('iframe');
+    var win_height = window.screen.height;
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.height = win_height - 300+ 'px';
+    }
+    console.log(window.screen.height)
+</script>
+</body>
+</html>
