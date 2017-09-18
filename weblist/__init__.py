@@ -3,7 +3,7 @@
 from flask import Flask
 
 
-def create_app(config=None):
+def create_app():
     app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
 
     from .main import main
