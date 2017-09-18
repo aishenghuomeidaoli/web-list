@@ -1,6 +1,8 @@
 # _*_ coding: utf-8 _*_
 from flask import render_template, redirect, request
 from . import main
+from .. import db
+from .models import User
 
 ENGINES = [
     {'name_zh_cn': u'百度', 'url': 'https://www.baidu.com/s', 'name_en': 'Baidu', 'key': 'wd'},
@@ -26,3 +28,29 @@ def search():
             links.append(engine.get('url') + '?' + engine.get('key') + '=' + keyword)
     width = 12 / len(links)
     return render_template('search.html', links=links, engines=ENGINES, selects=engines, keyword=keyword, width=width)
+
+
+@main.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    name = request.form.get('name')
+    email = request.form.get('email')
+    pw = request.form.get('pw')
+    pw_confirm = request.form.get('pw_confirm')
+    msg = ''
+    if not name:
+        msg = u'名称不能为空'
+    elif not email:
+        msg = u'邮箱不能为空'
+    elif not pw:
+        msg = u'密码不能为空'
+    elif pw_confirm != pw:
+        msg = u'确认密码与密码不一致'
+    if msg:
+        return render_template('register.html', **locals())
+    user = User(name=name, email=email, pw=pw)
+    db.add(user)
+    db.commit()
+    msg = u'注册成功，欢迎你，%s' % name
+    return render_template('register.html', msg=msg)
