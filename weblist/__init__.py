@@ -1,8 +1,8 @@
 # _*_ coding: utf-8 _*_
 from flask import Flask
-from sqlalchemy import create_engine, Column, Integer, DateTime, Sequence
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base, declared_attr
+from sqlalchemy.ext.declarative import declarative_base
 from weblist.config import SQL_URL
 
 
