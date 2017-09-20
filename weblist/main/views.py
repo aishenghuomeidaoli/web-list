@@ -81,7 +81,7 @@ def login():
         if not user:
             msg = u'邮箱或密码错误'
     if msg:
-        return render_template('register.html', **locals())
+        return render_template('login.html', **locals())
     session['user_id'] = user.id
     session['user_name'] = user.name
     return redirect(url_for('main.engines'))
