@@ -24,6 +24,33 @@
 <body>
 <div class="header">
     <div class="am-g">
+        {% if not name %}
+        <div class="am-topbar-right">
+            <a href="/login" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>
+                登录
+            </a>
+        </div>
+        <div class="am-topbar-right">
+            <a href="/register" class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"><span
+                    class="am-icon-pencil"></span>
+                注册
+            </a>
+        </div>
+        {% else %}
+        <div class="am-topbar-right">
+            <a href="/logout" class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span
+                    class="am-icon-pencil"></span>
+                退出
+            </a>
+        </div>
+        <div class="am-topbar-right">
+            <a href="#" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>
+                你好, {{ name }}
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="am-g">
         <h1>Web List</h1>
         <p>Store And Share<br/>存储与分享</p>
     </div>
@@ -32,9 +59,9 @@
             <!--<form method="get" class="am-form" v-on:submit.prevent="search">-->
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 {% for engine in engines %}
-                    <label class="am-checkbox-inline">
-                        <input type="checkbox" name="engine" value="{{ engine.name_en }}">{{ engine.name_zh_cn }}
-                    </label>
+                <label class="am-checkbox-inline">
+                    <input type="checkbox" name="engine" value="{{ engine.name_en }}">{{ engine.name_zh_cn }}
+                </label>
                 {% endfor %}
             </ul>
             <input type="text" id="keyword" v-model="keyword" name="keyword">

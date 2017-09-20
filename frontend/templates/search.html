@@ -31,13 +31,13 @@
             <form method="get" class="am-form" action="/search">
                 <ul class="am-nav am-nav-pills am-topbar-nav">
                     {% for engine in engines %}
-                        <label class="am-checkbox-inline">
-                            <input type="checkbox" name="engine" value="{{ engine.name_en }}"
-                                    {% if engine.name_en in selects %}
-                                   checked
-                                    {% endif %}
-                            >{{ engine.name_zh_cn }}
-                        </label>
+                    <label class="am-checkbox-inline">
+                        <input type="checkbox" name="engine" value="{{ engine.name_en }}"
+                               {% if engine.name_en in selects %}
+                               checked
+                               {% endif %}
+                        >{{ engine.name_zh_cn }}
+                    </label>
                     {% endfor %}
                 </ul>
                 <input type="text" id="keyword" value="{{ keyword }}" name="keyword">
@@ -45,14 +45,42 @@
             </form>
         </div>
         <div class="am-u-lg-6">
+            {% if not name %}
+            <div class="am-topbar-right">
+                <a href="/login" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span
+                        class="am-icon-user"></span>
+                    登录
+                </a>
+            </div>
+            <div class="am-topbar-right">
+                <a href="/register" class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"><span
+                        class="am-icon-pencil"></span>
+                    注册
+                </a>
+            </div>
+            {% else %}
+            <div class="am-topbar-right">
+                <a href="/logout" class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span
+                        class="am-icon-pencil"></span>
+                    退出
+                </a>
+            </div>
+            <div class="am-topbar-right">
+                <a href="#" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>
+                    你好, {{ name }}
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="am-g">
         {% for link in links %}
-            <div class="am-u-lg-{{ width }} am-u-sm-12">
-                <iframe src="{{ link }}" class="iframe" width="100%"></iframe>
-                {#                <iframe src="https://www.baidu.com/s?wd=hello" height="500px" width="100%"></iframe>#}
-            </div>
+        <div class="am-u-lg-{{ width }} am-u-sm-12">
+            <iframe src="{{ link }}" class="iframe" width="100%"></iframe>
+            {#
+            <iframe src="https://www.baidu.com/s?wd=hello" height="500px" width="100%"></iframe>
+            #}
+        </div>
         {% endfor %}
     </div>
 </div>
@@ -60,7 +88,7 @@
     var x = document.getElementsByClassName('iframe');
     var win_height = window.screen.height;
     for (var i = 0; i < x.length; i++) {
-        x[i].style.height = win_height - 300+ 'px';
+        x[i].style.height = win_height - 300 + 'px';
     }
     console.log(window.screen.height)
 </script>
