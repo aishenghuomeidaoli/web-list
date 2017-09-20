@@ -9,6 +9,8 @@ from weblist.config import SQL_URL
 def create_app():
     app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
 
+    app.config.from_pyfile('./config.py')
+
     from .main import main
     app.register_blueprint(main)
 
@@ -17,6 +19,6 @@ def create_app():
 
 engine = create_engine(SQL_URL)
 Session = sessionmaker(bind=engine)
+db = Session()
 
 Base = declarative_base()
-db = Session()

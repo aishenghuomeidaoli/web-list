@@ -24,6 +24,7 @@
 <body>
 <div class="header">
     <div class="am-g">
+        {% if not name %}
         <div class="am-topbar-right">
             <a href="/login" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>
                 登录
@@ -35,6 +36,19 @@
                 注册
             </a>
         </div>
+        {% else %}
+        <div class="am-topbar-right">
+            <a href="/logout" class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span
+                    class="am-icon-pencil"></span>
+                退出
+            </a>
+        </div>
+        <div class="am-topbar-right">
+            <a href="#" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>
+                你好, {{ name }}
+            </a>
+        </div>
+        {% endif %}
     </div>
     <div class="am-g">
         <h1>Web List</h1>
@@ -54,7 +68,6 @@
             <br>
         </form>
     </div>
-
 </div>
 </body>
 </html>
