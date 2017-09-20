@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Login Page | Amaze UI Example</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="am-g">
+        <h1>Web List</h1>
+        <p>Store And Share<br/>存储与分享</p>
+        <h2>{{ msg }}</h2>
+    </div>
+</div>
+<div class="am-g">
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered" id="login">
+        <h3>注册</h3>
+        <hr>
+        <form class="am-form" method="post" action="/register">
+            <label for="name">名称:</label>
+            <input type="text" name="name" id="name" value="{{ name }}">
+            <br>
+            <label for="email">邮箱:</label>
+            <input type="email" name="email" id="email" value="{{ email }}">
+            <br>
+            <label for="password">密码:</label>
+            <input type="password" name="pw" id="password" value="{{ pw }}">
+            <br>
+            <label for="password">密码:</label>
+            <input type="password" name="pw_confirm" id="password_confirm" value="{{ pw_confirm }}">
+            <br>
+            <div class="am-cf">
+                <input type="submit" name="" value="提 交" class="am-btn am-btn-primary am-btn-sm am-fl">
+                <a href="/login" class="am-btn am-btn-default am-btn-sm am-fr">登 录</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
